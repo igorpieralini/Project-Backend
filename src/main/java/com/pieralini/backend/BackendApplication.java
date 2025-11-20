@@ -19,12 +19,3 @@ public class BackendApplication {
         System.out.println("🚀 Backend iniciado com sucesso! http://localhost:8080");
     }
 }
-
-
-
-
-
-
-
-
-
