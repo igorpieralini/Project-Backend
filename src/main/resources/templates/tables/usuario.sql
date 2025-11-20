@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS usuario (
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    email VARCHAR(255),
-    senha VARCHAR(255),
-    PRIMARY KEY(id)
-);
