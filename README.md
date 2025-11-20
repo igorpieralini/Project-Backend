@@ -18,9 +18,6 @@ Para rodar o projeto localmente e acompanhar as alterações em tempo real:
 ```bash
 # Build do projeto
 mvn clean install
-
-# Rodar o servidor
-mvn spring-boot:run
 ```
 
 O backend por padrão estará disponível em:
