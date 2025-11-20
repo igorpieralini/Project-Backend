@@ -1,12 +1,9 @@
 package com.pieralini.backend.utils;
 
 import com.pieralini.backend.config.DbConnectionManager;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,14 +21,11 @@ public class SqlRunner {
         this.dbManager = dbManager;
     }
 
-    public void RunSql(String path) {
+    public void RunSql(String sql) {
         try {
-            Resource resource = loader.getResource("classpath:" + path);
-            String sql = Files.readString(resource.getFile().toPath(), StandardCharsets.UTF_8);
-
             Connection conn = dbManager.getConnection();
             if (conn == null) {
-                System.err.println("❌ Não foi possível obter conexão. SQL não executado: " + path);
+                System.err.println("❌ Não foi possível obter conexão.");
                 return;
             }
 
@@ -45,13 +39,14 @@ public class SqlRunner {
                 }
             }
 
-            System.out.println("✔ Queries executadas: " + path);
+            System.out.println("✔ SQL executado diretamente.");
 
         } catch (Exception e) {
-            System.err.println("❌ Erro executando SQL: " + path);
+            System.err.println("❌ Erro executando SQL direto");
             e.printStackTrace();
         }
     }
+
 
     public List<Map<String, Object>> ReturnSqlFromQuery(String sql, Object... params) {
         List<Map<String, Object>> results = new ArrayList<>();
@@ -82,6 +77,4 @@ public class SqlRunner {
 
         return results;
     }
-
-
 }

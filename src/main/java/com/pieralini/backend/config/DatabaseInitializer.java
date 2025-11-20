@@ -1,21 +1,20 @@
 package com.pieralini.backend.config;
 
-import com.pieralini.backend.utils.SqlRunner;
+import com.pieralini.backend.queries.SchemaQuery;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
 @Component
 public class DatabaseInitializer {
 
-    private final SqlRunner sqlRunner;
+    private final SchemaQuery schemaQuery;
 
-    public DatabaseInitializer(SqlRunner sqlRunner) {
-        this.sqlRunner = sqlRunner;
+    private DatabaseInitializer(SchemaQuery schemaQuery) {
+        this.schemaQuery = schemaQuery;
     }
 
     @PostConstruct
     public void initDatabase() {
-        sqlRunner.RunSql("database/schema/create_database.sql");
-        sqlRunner.RunSql("database/schema/create_tables.sql");
+        schemaQuery.createSchema();
     }
 }
