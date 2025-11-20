@@ -13,7 +13,6 @@ public class Funcionario {
     private String cargo;
     private String email;
 
-    // GETTERS
     public Long getId() {
         return id;
     }
@@ -30,7 +29,6 @@ public class Funcionario {
         return email;
     }
 
-    // SETTERS
     public void setId(Long id) {
         this.id = id;
     }
