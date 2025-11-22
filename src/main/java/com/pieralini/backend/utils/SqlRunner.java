@@ -77,4 +77,26 @@ public class SqlRunner {
 
         return results;
     }
+
+    public int executeUpdate(String sql, Object... params) {
+        int rowsAffected = 0;
+
+        try (Connection conn = dbManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            for (int i = 0; i < params.length; i++) {
+                stmt.setObject(i + 1, params[i]);
+            }
+
+            rowsAffected = stmt.executeUpdate();
+            System.out.println("✔ SQL executado com sucesso. Linhas afetadas: " + rowsAffected);
+
+        } catch (SQLException e) {
+            System.err.println("❌ Erro executando SQL parametrizado");
+            e.printStackTrace();
+        }
+
+        return rowsAffected;
+    }
+
 }
