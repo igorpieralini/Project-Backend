@@ -1,26 +1,46 @@
 # Spring Boot Backend Project
 
-Este projeto foi gerado utilizando o [Spring Boot](https://spring.io/projects/spring-boot). O objetivo do projeto é **estudo de Angular e Spring Boot (Java)**, criando um sistema simples de integração com Frontend e Backend separados, **utilizando MySQL como banco de dados**.
+Este projeto foi gerado utilizando o [Spring Boot](https://spring.io/projects/spring-boot). O objetivo do projeto é **estudo de Angular e Spring Boot (Java)**, criando um sistema completo com **Frontend e Backend separados**, **utilizando MySQL como banco de dados**.
 
-O sistema inclui:
+O sistema inclui as seguintes funcionalidades principais:
 
-* Sistema de Login
-* Sistema de consulta de funcionários
-* Sistema de adicionar funcionários
-* Sistema de remoção de funcionários
+* **Sistema de Login** de usuários/administradores.
+* **Listagem de funcionários** com integração completa com o banco.
+* **Cadastro de novos funcionários**.
+* **Atualização e remoção de funcionários**.
+* **Suporte a Tema e Idioma**, permitindo personalização de aparência e idioma do sistema pelo usuário.
 
 ---
 
-## 🚀 Iniciando o Servidor de Desenvolvimento / Build do Projeto
+## 🚀 Configuração e Execução do Projeto
 
-Para rodar o projeto localmente e acompanhar as alterações em tempo real:
+Para rodar o backend localmente:
+
+1. Certifique-se de ter o **MySQL** instalado e rodando.
+2. Crie um banco de dados, por exemplo: `backend_db`.
+3. Configure as credenciais de acesso no arquivo `application.properties` ou `application.yml`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/backend_db
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+4. Build do projeto:
 
 ```bash
-# Build do projeto
 mvn clean install
 ```
 
-O backend por padrão estará disponível em:
+5. Rodar o servidor de desenvolvimento:
+
+```bash
+mvn spring-boot:run
+```
+
+O backend estará disponível em:
 
 ```
 http://localhost:8080/
@@ -30,8 +50,6 @@ http://localhost:8080/
 
 ## 🏗️ Estrutura do Projeto
 
-Segue a estrutura principal do backend:
-
 ```
 backend/
  ├─ .mvn/
@@ -39,17 +57,16 @@ backend/
  │   ├─ main/
  │   │   ├─ java/
  │   │   │   └─ com/pieralini/backend/
- │   │   │       ├─ config/
- │   │   │       ├─ controllers/
- │   │   │       ├─ dto/
- │   │   │       ├─ models/
- │   │   │       ├─ queries/
- │   │   │       ├─ repositories/
- │   │   │       ├─ services/
- │   │   │       ├─ utils/
+ │   │   │       ├─ config/           # Configurações gerais do sistema, DB, CORS, segurança
+ │   │   │       ├─ controllers/      # Controladores REST para endpoints
+ │   │   │       ├─ models/           # Classes de modelo/entidade (Funcionario, Usuario, etc.)
+ │   │   │       ├─ queries/          # Queries SQL customizadas
+ │   │   │       ├─ repositories/     # Repositórios Spring Data JPA
+ │   │   │       ├─ services/         # Serviços de negócio
+ │   │   │       ├─ utils/            # Classes utilitárias (SQL Runner, Helpers)
  │   │   │       └─ BackendApplication.java
  │   │   └─ resources/
- │   │       ├─ database/
+ │   │       ├─ database/             # Scripts de banco (opcional)
  │   │       ├─ application.properties
  │   │       └─ application.yml
  │   └─ test/
@@ -57,13 +74,25 @@ backend/
  └─ pom.xml
 ```
 
-Essa organização permite separar claramente configuração (`config`), controladores (`controllers`), DTOs, modelos (`models`), consultas (`queries`), repositórios (`repositories`), serviços (`services`) e utilitários (`utils`).
+Essa organização separa claramente **configuração, controladores, modelos, queries, repositórios, serviços e utilitários**, facilitando manutenção e escalabilidade.
 
 ---
 
-## 💻 Rodando o Projeto com Git
+## 💻 Funcionalidades Detalhadas
 
-Para clonar e executar este backend, utilize os comandos abaixo:
+### Funcionários
+
+* **Listagem**: endpoints para recuperar todos os funcionários do banco.
+* **Adicionar funcionário**: integração com formulários do Angular para criar registros.
+
+### Personalização
+
+* **Tema**: o sistema suporta mudança de tema, que é persistida no Frontend (Angular).
+* **Idioma**: o sistema suporta múltiplos idiomas, com carregamento do idioma salvo no Frontend.
+
+---
+
+## 🔧 Rodando com Git
 
 ```bash
 # Clonar o repositório
@@ -74,9 +103,8 @@ cd Project-Backend
 
 # Build e instalar dependências
 mvn clean install
-
-# Rodar o servidor de desenvolvimento
-mvn spring-boot:run
 ```
+
+---
 
 Desenvolvedor: **Igor Pieralini**
