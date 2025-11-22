@@ -15,7 +15,7 @@ public class FuncionariosConsult {
 
     private final SqlRunner sqlRunner;
 
-    public FuncionariosConsult(SqlRunner sqlRunner) {
+    private FuncionariosConsult(SqlRunner sqlRunner) {
         this.sqlRunner = sqlRunner;
     }
 
