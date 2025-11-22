@@ -1,11 +1,9 @@
 package com.pieralini.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "usuario")
 public class Usuario {
 
     @Id
@@ -14,6 +12,9 @@ public class Usuario {
 
     private String email;
     private String senha;
+
+    @Column(name = "id_funcionario")
+    private Long idFuncionario;
 
     public Long getId() {
         return id;
@@ -27,6 +28,10 @@ public class Usuario {
         return senha;
     }
 
+    public Long getIdFuncionario() {
+        return idFuncionario;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,5 +42,9 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public void setIdFuncionario(Long idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 }

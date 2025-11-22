@@ -13,7 +13,7 @@ public class AuthQuery {
 
     private final SqlRunner sqlRunner;
 
-    public AuthQuery(SqlRunner sqlRunner) {
+    private AuthQuery(SqlRunner sqlRunner) {
         this.sqlRunner = sqlRunner;
     }
 
